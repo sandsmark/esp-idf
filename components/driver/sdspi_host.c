@@ -280,7 +280,7 @@ esp_err_t sdspi_host_init_slot(int slot, const sdspi_slot_config_t* slot_config)
             slot_config->dma_channel);
     if (ret != ESP_OK) {
         ESP_LOGD(TAG, "spi_bus_initialize failed with rc=0x%x", ret);
-        return ret;
+        //return ret;
     }
 
     // Attach the SD card to the SPI bus
