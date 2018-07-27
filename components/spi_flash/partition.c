@@ -58,6 +58,25 @@ static SLIST_HEAD(partition_list_head_, partition_list_item_) s_partition_list =
 static _lock_t s_partition_list_lock;
 
 
+void esp_partition_reload_table()
+{
+    if (!SLIST_EMPTY(&s_partition_list))
+    {
+        _lock_acquire(&s_partition_list_lock);
+
+        // Remove all entries
+        while(!SLIST_EMPTY(&s_partition_list))
+        {
+            partition_list_item_t* item = SLIST_FIRST(&s_partition_list);
+            SLIST_REMOVE_HEAD(&s_partition_list, next);
+
+            free(item);
+        }
+
+        _lock_release(&s_partition_list_lock);
+    }
+}
+
 esp_partition_iterator_t esp_partition_find(esp_partition_type_t type,
         esp_partition_subtype_t subtype, const char* label)
 {
