@@ -28,6 +28,7 @@
 #include "esp_image_format.h"
 #include "esp_secure_boot.h"
 #include "esp_flash_encrypt.h"
+#include "esp_spi_flash.h"
 #include "sdkconfig.h"
 
 #include "esp_ota_ops.h"
@@ -239,14 +240,6 @@ esp_err_t esp_ota_end(esp_ota_handle_t handle)
         ret = ESP_ERR_OTA_VALIDATE_FAILED;
         goto cleanup;
     }
-
-#ifdef CONFIG_SECURE_BOOT_ENABLED
-    ret = esp_secure_boot_verify_signature(it->part->address, data.image_len);
-    if (ret != ESP_OK) {
-        ret = ESP_ERR_OTA_VALIDATE_FAILED;
-        goto cleanup;
-    }
-#endif
 
  cleanup:
     LIST_REMOVE(it, entries);
