@@ -623,6 +623,8 @@ static esp_err_t poll_cmd_response(int slot, sdspi_hw_cmd_t *cmd)
 static esp_err_t start_command_read_blocks(int slot, sdspi_hw_cmd_t *cmd,
         uint8_t *data, uint32_t rx_length)
 {
+    go_idle_clockout(slot);
+
     bool need_stop_command = rx_length > SDSPI_MAX_DATA_LEN;
     spi_transaction_t* t_command = get_transaction(slot);
     *t_command = (spi_transaction_t) {
