@@ -672,6 +672,8 @@ static esp_err_t shift_cmd_response(sdspi_hw_cmd_t* cmd, int sent_bytes)
 static esp_err_t start_command_read_blocks(slot_info_t *slot, sdspi_hw_cmd_t *cmd,
         uint8_t *data, uint32_t rx_length, bool need_stop_command)
 {
+    go_idle_clockout(slot->spi_handle);
+
     spi_transaction_t t_command = {
         .length = (SDSPI_CMD_R1_SIZE + SDSPI_RESPONSE_MAX_DELAY) * 8,
         .tx_buffer = cmd,
