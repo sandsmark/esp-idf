@@ -978,7 +978,8 @@ esp_err_t sdspi_host_init_slot(int slot, const sdspi_slot_config_t* slot_config)
             slot_config->dma_channel);
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "spi_bus_initialize failed with rc=0x%x", ret);
-        return ret;
+        //«Allow SD-SPI to share SPI bus.» -- OtherCrashOverride
+        //return ret;
     }
 
     sdspi_dev_handle_t sdspi_handle;
