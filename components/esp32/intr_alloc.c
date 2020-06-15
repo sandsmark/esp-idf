@@ -908,11 +908,11 @@ void IRAM_ATTR esp_intr_noniram_enable(void)
 //equivalents here.
 
 
-void IRAM_ATTR ets_isr_unmask(unsigned int mask) {
+void IRAM_ATTR ets_isr_unmask(uint32_t mask) {
     xt_ints_on(mask);
 }
 
-void IRAM_ATTR ets_isr_mask(unsigned int mask) {
+void IRAM_ATTR ets_isr_mask(uint32_t mask) {
     xt_ints_off(mask);
 }
 

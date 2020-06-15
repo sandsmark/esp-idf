@@ -375,7 +375,7 @@ uint32_t IRAM_ATTR spi_flash_mmap_get_free_pages(spi_flash_mmap_memory_t memory)
     return count;
 }
 
-uint32_t spi_flash_cache2phys(const void *cached)
+size_t spi_flash_cache2phys(const void *cached)
 {
     intptr_t c = (intptr_t)cached;
     size_t cache_page;
@@ -403,7 +403,7 @@ uint32_t spi_flash_cache2phys(const void *cached)
     return phys_offs | (c & (SPI_FLASH_MMU_PAGE_SIZE-1));
 }
 
-const void *IRAM_ATTR spi_flash_phys2cache(uint32_t phys_offs, spi_flash_mmap_memory_t memory)
+const void *IRAM_ATTR spi_flash_phys2cache(size_t phys_offs, spi_flash_mmap_memory_t memory)
 {
     uint32_t phys_page = phys_offs / SPI_FLASH_MMU_PAGE_SIZE;
     int start, end, page_delta;

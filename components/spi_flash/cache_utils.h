@@ -57,7 +57,7 @@ void spi_flash_enable_interrupts_caches_no_os(void);
 //
 // Only call this while holding spi_flash_op_lock()
 // Returns true if cache was flushed, false otherwise
-bool spi_flash_check_and_flush_cache(uint32_t start_addr, uint32_t length);
+bool spi_flash_check_and_flush_cache(size_t start_addr, size_t length);
 
 //config cache mode
 #ifdef CONFIG_IDF_TARGET_ESP32S2

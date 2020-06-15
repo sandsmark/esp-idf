@@ -378,11 +378,12 @@ export PROJECT_NAME
 export PROJECT_VER
 
 # Warnings-related flags relevant both for C and C++
-COMMON_WARNING_FLAGS = -Wall -Werror=all \
+COMMON_WARNING_FLAGS = -Wall \
 	-Wno-error=unused-function \
 	-Wno-error=unused-but-set-variable \
 	-Wno-error=unused-variable \
 	-Wno-error=deprecated-declarations \
+	-Wno-format \
 	-Wextra \
 	-Wno-unused-parameter -Wno-sign-compare
 
@@ -732,7 +733,7 @@ ifndef MAKE_RESTARTS
 
 TOOLCHAIN_HEADER := $(shell $(CC) --version | head -1)
 TOOLCHAIN_PATH := $(shell which $(CC))
-TOOLCHAIN_COMMIT_DESC := $(shell $(CC) --version | sed -E -n 's|.*\(crosstool-NG (.*)\).*|\1|gp')
+TOOLCHAIN_COMMIT_DESC := $(shell $(CC) --version | sed -E -n 's|.*\(GCC (.*)\).*|\1|gp')
 TOOLCHAIN_GCC_VER := $(COMPILER_VERSION_STR)
 
 # Officially supported version(s)

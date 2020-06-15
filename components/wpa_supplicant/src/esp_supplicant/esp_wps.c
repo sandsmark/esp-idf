@@ -1989,7 +1989,7 @@ int wps_check_wifi_mode(void)
     return ESP_OK;
 }
 
-int esp_wifi_wps_enable(const esp_wps_config_t *config)
+esp_err_t esp_wifi_wps_enable(const esp_wps_config_t *config)
 {
     int ret;
 
@@ -2074,7 +2074,7 @@ int wifi_wps_disable_internal(void)
     return ESP_OK;
 }
 
-int esp_wifi_wps_disable(void)
+esp_err_t esp_wifi_wps_disable(void)
 {
     int ret = 0;
 
@@ -2116,7 +2116,7 @@ int esp_wifi_wps_disable(void)
     return ESP_OK;
 }
 
-int esp_wifi_wps_start(int timeout_ms)
+esp_err_t esp_wifi_wps_start(int timeout_ms)
 {
     if (ESP_OK != wps_check_wifi_mode()) {
         return ESP_ERR_WIFI_MODE;
